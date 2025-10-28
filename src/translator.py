@@ -26,10 +26,15 @@ class PigLatinTranslator:
         if self.phrase == "":
             return "nil"
         elif self.phrase[0] in VOWELS:
-            last_letter = self.phrase[-1]
-            if last_letter == "y":
-                return self.phrase + "nay"
-            elif last_letter in VOWELS:
-                return self.phrase + "yay"
-            else:
-                return self.phrase + "ay"
+            return PigLatinTranslator.translate_word_starting_with_vowel(self.phrase)
+
+    @staticmethod
+    def translate_word_starting_with_vowel(word: str) -> str:
+        last_letter = word[-1]
+        if last_letter == "y":
+            return word + "nay"
+        elif last_letter in VOWELS:
+            return word + "yay"
+        else:
+            return word + "ay"
+
