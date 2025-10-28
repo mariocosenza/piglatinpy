@@ -30,3 +30,8 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("umbrella")
         translation = translator.translate()
         self.assertEqual("umbrellayay", translation)
+
+    def test_translate_single_word_starting_with_vowel_i_and_ending_with_vowel_e(self):
+        translator = PigLatinTranslator("intersubjective")
+        translation = translator.translate()
+        self.assertEqual("intersubjectiveyay", translation)
