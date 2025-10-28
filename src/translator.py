@@ -26,7 +26,10 @@ class PigLatinTranslator:
         if self.phrase == "":
             return "nil"
         elif self.phrase[0] in VOWELS:
-            if self.phrase[-1] == "y":
+            last_letter = self.phrase[-1]
+            if last_letter == "y":
                 return self.phrase + "nay"
-            else:
+            elif last_letter in VOWELS:
                 return self.phrase + "yay"
+            else:
+                return "okay"
