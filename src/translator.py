@@ -29,4 +29,4 @@ class PigLatinTranslator:
             if self.phrase[-1] == "y":
                 return self.phrase + "nay"
             else:
-                return "umbrellayay"
+                return self.phrase + "yay"
