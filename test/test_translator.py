@@ -35,3 +35,8 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("intersubjective")
         translation = translator.translate()
         self.assertEqual("intersubjectiveyay", translation)
+
+    def test_translate_single_word_starting_with_vowel_o_and_ending_with_consonant(self):
+        translator = PigLatinTranslator("ok")
+        translation = translator.translate()
+        self.assertEqual("okay", translation)
