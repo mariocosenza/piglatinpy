@@ -40,3 +40,8 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("ok")
         translation = translator.translate()
         self.assertEqual("okay", translation)
+
+    def test_translate_single_word_starting_with_vowel_a_and_ending_with_consonant(self):
+        translator = PigLatinTranslator("and")
+        translation = translator.translate()
+        self.assertEqual("anday", translation)
