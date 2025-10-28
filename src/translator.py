@@ -32,4 +32,4 @@ class PigLatinTranslator:
             elif last_letter in VOWELS:
                 return self.phrase + "yay"
             else:
-                return "okay"
+                return self.phrase + "ay"
