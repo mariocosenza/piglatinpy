@@ -85,3 +85,8 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("well-being hello world")
         translation = translator.translate()
         self.assertEqual("ellway-eingbay ellohay orldway", translation)
+
+    def test_translate_composite_punctuation(self):
+        translator = PigLatinTranslator("well-being!")
+        translation = translator.translate()
+        self.assertEqual("ellway-eingbay!", translation)
