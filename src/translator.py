@@ -2,6 +2,7 @@ from src.error import PigLatinError
 
 VOWELS = "aeiou"
 CONSONANTS = "bcdfghjyklmnpqrstvwzx"
+PUNCTUATION= ".,;?!:()"
 
 class PigLatinTranslator:
 
@@ -34,7 +35,11 @@ class PigLatinTranslator:
             composites = word.split(sep='-')
             if len(composites) > 1:
                 for composite in composites:
-                    translation += PigLatinTranslator.translate_helper(composite) + '-'
+                    if composite[-1] in PUNCTUATION:
+                        split_composite = composite[:len(composite)-1]
+                        translation += PigLatinTranslator.translate_helper(split_composite) + composite[-1] + '-'
+                    else:
+                        translation += PigLatinTranslator.translate_helper(composite) + '-'
                 translation = translation.rstrip('-')
             else:
                 translation += PigLatinTranslator.translate_helper(word)
