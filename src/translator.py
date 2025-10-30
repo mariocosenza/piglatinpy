@@ -48,6 +48,7 @@ class PigLatinTranslator:
             return PigLatinTranslator.translate_word_starting_with_vowel(word)
         elif first_letter in CONSONANTS:
             return PigLatinTranslator.translate_word_starting_with_consonant(word)
+        return None
 
     @staticmethod
     def translate_word_starting_with_vowel(word: str) -> str:
