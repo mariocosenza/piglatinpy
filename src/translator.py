@@ -69,6 +69,8 @@ class PigLatinTranslator:
 
         if PigLatinTranslator.is_all_upper_case(word):
             return temp_word.upper()
+        elif PigLatinTranslator.is_title_cases(word):
+            return temp_word[0].upper() + temp_word[1:].lower() + "AY"
 
         return temp_word
 
@@ -76,6 +78,7 @@ class PigLatinTranslator:
     @staticmethod
     def translate_word_starting_with_consonant(word: str) -> str:
         count = 0
+        temp_word = word
         for letter in word:
             if letter.lower() in CONSONANTS:
                  count += 1
@@ -83,10 +86,16 @@ class PigLatinTranslator:
             else:
                 break
         substring = word[count:]
-        if PigLatinTranslator.is_all_upper_case(word):
+        if PigLatinTranslator.is_all_upper_case(temp_word):
             return substring + "AY"
+        elif PigLatinTranslator.is_title_cases(temp_word):
+            return substring[0].upper() + substring[1:].lower() + "ay"
         return substring + "ay"
 
     @staticmethod
     def is_all_upper_case(word: str) -> bool:
         return word == word.upper()
+
+    @staticmethod
+    def is_title_cases(word: str) -> bool:
+        return word[1:].swapcase() == word[1:].upper() and word[0].isupper()
