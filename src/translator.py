@@ -60,6 +60,9 @@ class PigLatinTranslator:
     def translate_word_starting_with_vowel(word: str) -> str:
         last_letter = word[-1]
         temp_word = word
+        if PigLatinTranslator.is_mixed_case(word):
+            raise PigLatinError()
+
         if last_letter.lower() == "y":
             temp_word += "nay"
         elif last_letter.lower() in VOWELS:
@@ -79,6 +82,8 @@ class PigLatinTranslator:
     def translate_word_starting_with_consonant(word: str) -> str:
         count = 0
         temp_word = word
+        if PigLatinTranslator.is_mixed_case(word):
+            raise PigLatinError()
         for letter in word:
             if letter.lower() in CONSONANTS:
                  count += 1
@@ -99,3 +104,9 @@ class PigLatinTranslator:
     @staticmethod
     def is_title_cases(word: str) -> bool:
         return word[1:].swapcase() == word[1:].upper() and word[0].isupper()
+
+    @staticmethod
+    def is_mixed_case(word: str) -> bool:
+        if not PigLatinTranslator.is_all_upper_case(word) and not PigLatinTranslator.is_title_cases(word):
+            return word.swapcase() != word.upper()
+        return False
