@@ -77,7 +77,7 @@ class PigLatinTranslator:
     def translate_word_starting_with_consonant(word: str) -> str:
         count = 0
         for letter in word:
-            if letter in CONSONANTS:
+            if letter.lower() in CONSONANTS:
                  count += 1
                  word += letter
             else:
