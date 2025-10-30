@@ -31,7 +31,7 @@ class PigLatinTranslator:
         if first_letter in VOWELS:
             return PigLatinTranslator.translate_word_starting_with_vowel(self.phrase)
         elif first_letter in CONSONANTS:
-            return PigLatinTranslator.translate_word_ending_with_consonant(self.phrase)
+            return PigLatinTranslator.translate_word_starting_with_consonant(self.phrase)
 
 
     @staticmethod
@@ -46,6 +46,13 @@ class PigLatinTranslator:
 
 
     @staticmethod
-    def translate_word_ending_with_consonant(word: str) -> str:
-        substring = word[1:]
-        return substring + word[0] + "ay"
+    def translate_word_starting_with_consonant(word: str) -> str:
+        count = 0
+        for letter in word:
+            if letter in CONSONANTS:
+                 count += 1
+                 word += letter
+            else:
+                break
+        substring = word[count:]
+        return substring + "ay"
