@@ -27,12 +27,21 @@ class PigLatinTranslator:
 
         if self.phrase == "":
             return "nil"
-        first_letter = self.phrase[0]
-        if first_letter in VOWELS:
-            return PigLatinTranslator.translate_word_starting_with_vowel(self.phrase)
-        elif first_letter in CONSONANTS:
-            return PigLatinTranslator.translate_word_starting_with_consonant(self.phrase)
 
+        words = self.phrase.split(sep=' ')
+        translation = ""
+        for word in words:
+            translation += PigLatinTranslator.translate_helper(word) + ' '
+
+        return translation.rstrip()
+
+    @staticmethod
+    def translate_helper(word):
+        first_letter = word[0]
+        if first_letter in VOWELS:
+            return PigLatinTranslator.translate_word_starting_with_vowel(word)
+        elif first_letter in CONSONANTS:
+            return PigLatinTranslator.translate_word_starting_with_consonant(word)
 
     @staticmethod
     def translate_word_starting_with_vowel(word: str) -> str:
