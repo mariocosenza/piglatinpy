@@ -90,3 +90,8 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("well-being!")
         translation = translator.translate()
         self.assertEqual("ellway-eingbay!", translation)
+
+    def test_translate_upper_case(self):
+        translator = PigLatinTranslator("APPLE")
+        translation = translator.translate()
+        self.assertEqual("APPLEYAY", translation)
