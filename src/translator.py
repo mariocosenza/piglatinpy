@@ -37,7 +37,8 @@ class PigLatinTranslator:
                     translation += PigLatinTranslator.translate_helper(composite) + '-'
                 translation = translation.rstrip('-')
             else:
-                translation += PigLatinTranslator.translate_helper(word) + ' '
+                translation += PigLatinTranslator.translate_helper(word)
+            translation += ' '
 
         return translation.rstrip()
 
