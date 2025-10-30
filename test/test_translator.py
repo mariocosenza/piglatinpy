@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+from src.error import PigLatinError
 from src.translator import PigLatinTranslator
 
 
@@ -105,3 +106,7 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("Hello APPLE")
         translation = translator.translate()
         self.assertEqual("Ellohay APPLEYAY", translation)
+
+    def test_translate_mixed(self):
+        translator = PigLatinTranslator("HeLlo")
+        self.assertRaises(PigLatinError, translator.translate)
