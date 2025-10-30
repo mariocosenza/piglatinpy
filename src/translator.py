@@ -31,7 +31,13 @@ class PigLatinTranslator:
         words = self.phrase.split(sep=' ')
         translation = ""
         for word in words:
-            translation += PigLatinTranslator.translate_helper(word) + ' '
+            composites = word.split(sep='-')
+            if len(composites) > 1:
+                for composite in composites:
+                    translation += PigLatinTranslator.translate_helper(composite) + '-'
+                translation = translation.rstrip('-')
+            else:
+                translation += PigLatinTranslator.translate_helper(word) + ' '
 
         return translation.rstrip()
 
