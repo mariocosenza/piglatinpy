@@ -50,21 +50,27 @@ class PigLatinTranslator:
     @staticmethod
     def translate_helper(word):
         first_letter = word[0]
-        if first_letter in VOWELS:
+        if first_letter.lower() in VOWELS:
             return PigLatinTranslator.translate_word_starting_with_vowel(word)
-        elif first_letter in CONSONANTS:
+        elif first_letter.lower() in CONSONANTS:
             return PigLatinTranslator.translate_word_starting_with_consonant(word)
         return None
 
     @staticmethod
     def translate_word_starting_with_vowel(word: str) -> str:
         last_letter = word[-1]
-        if last_letter == "y":
-            return word + "nay"
-        elif last_letter in VOWELS:
-            return word + "yay"
+        temp_word = word
+        if last_letter.lower() == "y":
+            temp_word += "nay"
+        elif last_letter.lower() in VOWELS:
+            temp_word += "yay"
         else:
-            return word + "ay"
+            temp_word += "ay"
+
+        if PigLatinTranslator.is_all_upper_case(word):
+            return temp_word.upper()
+
+        return temp_word
 
 
     @staticmethod
@@ -77,4 +83,10 @@ class PigLatinTranslator:
             else:
                 break
         substring = word[count:]
+        if PigLatinTranslator.is_all_upper_case(word):
+            return substring + "AY"
         return substring + "ay"
+
+    @staticmethod
+    def is_all_upper_case(word: str) -> bool:
+        return word == word.upper()
