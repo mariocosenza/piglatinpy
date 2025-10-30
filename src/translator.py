@@ -1,6 +1,7 @@
 from src.error import PigLatinError
 
 VOWELS = "aeiou"
+CONSONANTS = "bcdfghjyklmnpqrstvwzx"
 
 class PigLatinTranslator:
 
@@ -23,10 +24,15 @@ class PigLatinTranslator:
         Returns the Pig Latin translation of the phrase.
         :return: the translation.
         """
+
         if self.phrase == "":
             return "nil"
-        elif self.phrase[0] in VOWELS:
+        first_letter = self.phrase[0]
+        if first_letter in VOWELS:
             return PigLatinTranslator.translate_word_starting_with_vowel(self.phrase)
+        elif first_letter in CONSONANTS:
+            return PigLatinTranslator.translate_word_ending_with_consonant(self.phrase)
+
 
     @staticmethod
     def translate_word_starting_with_vowel(word: str) -> str:
@@ -38,3 +44,8 @@ class PigLatinTranslator:
         else:
             return word + "ay"
 
+
+    @staticmethod
+    def translate_word_ending_with_consonant(word: str) -> str:
+        substring = word[1:]
+        return substring + word[0] + "ay"
